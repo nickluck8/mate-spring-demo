@@ -1,0 +1,12 @@
+com\nick\dao\UserDaoImpl.class
+com\nick\configuration\AppConfig.class
+com\nick\model\User.class
+com\nick\services\UserServiceImpl.class
+com\nick\services\FacebookServiceImpl.class
+com\nick\services\UserService.class
+com\nick\configuration\WebAppInitializer.class
+com\nick\controllers\HomeController.class
+com\nick\configuration\SocialConfig.class
+com\nick\services\FacebookService.class
+com\nick\controllers\UserController.class
+com\nick\dao\UserDao.class
