@@ -35,6 +35,8 @@ public class UserController {
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public ModelAndView login(@ModelAttribute User user, ModelAndView vm) {
+        vm.addObject("user");
+        vm.setViewName("login");
         return vm;
     }
 

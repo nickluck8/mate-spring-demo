@@ -10,7 +10,7 @@ public class FacebookServiceImpl implements FacebookService {
     private FacebookTemplate facebookTemplate;
 
     @Override
-    public User geUser() {
+    public User getUser() {
         User profile = facebookTemplate
                 .userOperations()
                 .getUserProfile();

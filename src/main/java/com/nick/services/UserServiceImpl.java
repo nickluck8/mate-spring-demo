@@ -21,6 +21,13 @@ public class UserServiceImpl implements UserService {
     public User addUser(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setRegisterDate(LocalDateTime.now());
-        return userDao.addUser(user);
+        userDao.addUser(user);
+        user = userDao.findById(user.getId());
+        return user;
+    }
+
+    @Override
+    public User findById(Long id) {
+        return null;
     }
 }

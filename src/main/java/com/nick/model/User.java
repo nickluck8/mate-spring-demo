@@ -1,72 +1,40 @@
 package com.nick.model;
 
-import java.time.LocalDateTime;
+import lombok.Data;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+@Entity
+@Table(name = "USERS")
 public class User {
+
+    @Id
+    @GeneratedValue(generator = "USER_GEN")
+    @SequenceGenerator(name = "USER_GEN", sequenceName = "USER_SEQ", allocationSize = 1)
     private Long id;
-    private String firstName;
-    private String lastName;
+    @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "EMAIL")
     private String email;
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+    @Column(name = "LAST_NAME")
+    private String lastName;
+    @Column(name = "REGISTER_DATE")
     private LocalDateTime registerDate;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<ProductOrder> productOrders = new ArrayList<>();
 
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String password, String email, LocalDateTime registerDate) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-        this.registerDate = registerDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDateTime getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(LocalDateTime registerDate) {
-        this.registerDate = registerDate;
+    public void setProductOrder(ProductOrder productOrder) {
+        this.productOrders.add(productOrder);
+        productOrder.setUser(this);
     }
 }
